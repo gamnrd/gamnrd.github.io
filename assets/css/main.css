@@ -1669,11 +1669,6 @@ input, select, textarea {
   margin: auto;
 }
 
-/* Hide the images by default */
-.certificates {
-  display: none;
-}
-
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
@@ -1682,12 +1677,11 @@ input, select, textarea {
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
-  user-select: none;
 }
 
 /* Position the "next button" to the right */
@@ -1701,6 +1695,13 @@ input, select, textarea {
   background-color: rgba(0,0,0,0.8);
 }
 
+.slides {
+	display: none;
+}
+
+.active-slide {
+	display: block;
+}
 
 /* Number text (1/3 etc) */
 .numbertext {
@@ -1729,11 +1730,18 @@ input, select, textarea {
 
 /* Fading animation */
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+	from {opacity: .4}
+	to {opacity: 1}
+  }
+  
+  @keyframes fade {
+	from {opacity: .4}
+	to {opacity: 1}
+  }
