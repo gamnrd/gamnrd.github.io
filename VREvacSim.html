@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mike Hammond - VR Evac Sim</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" style="font-size: 35px;" class="title">Mike Hammond</a>
+				<nav>
+					<ul style="font-size: 25px;">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="mailto: michael.hammond714@gmail.com" class="icon fa-envelope"></a></li>
+						<li><a href="https://www.linkedin.com/in/mike-j-hammond/" class="icon brands fa-linkedin"></a></li>
+						<li><a href="https://github.com/gamnrd" class="icon brands fa-github"></a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="intro" class="wrapper style3">
+						<div class="inner" style="width: 75em;">
+							<h1 class="major">VR Hospital Evacuation Simulation</h1>
+							<span class="image fit"><img src="images/vrevac/preview.gif"/></span>
+                            <span class="image right"><img src="images/vrevac/map.JPG" alt="Image of the original map"/></span>
+								<p>The Cambridge Memorial Hospital (CMH) VR project is a proof of concept for a hospital evacuation training simulator. 
+                                    In the application the user takes on the role of hospital staff tasked with locating and evacuating all patients from 
+                                    their assigned ward. This project includes a tutorial to teach the user about the different tasks they will have to 
+                                    complete during the training exercise. There are options to either time the user to see how fast the training is 
+                                    completed or to set a time limit with which the training will end if the users runs out of time.</p>
+
+								<p>This was my capstone project for the Augmented Reality/Virtual Reality course at Conestoga College. For the capstone
+                                    our class of six took on two projects from real clients, Teledyne and The Cambridge Memorial Hospital. In this project
+                                    I took the role of lead developer, I programmed and implemented all the tasks, menu functionality, VR interactions
+                                     and the tutorial scene.
+                                </p>
+
+								<p>
+									Through this project I have learned about VR development, the XR Interaction Toolkit, OpenXR and more.
+								</p>
+
+								<div class="box alt">
+									<div class="row gtr-uniform">
+										<div class="col-4"><span class="image fit"><img src="images/vrevac/9.jpg" alt="" /></span></div>
+										<div class="col-4"><span class="image fit"><img src="images/vrevac/6.jpg" alt="" /></span></div>
+										<div class="col-4"><span class="image fit"><img src="images/vrevac/8.jpg" alt="" /></span></div>
+									</div>
+								</div>
+
+							<section id="main" class="wrapper style4title"><h1>Preview</h1></section>
+
+                            <iframe style="display: block; border-style: none; align-items: center;" width="100%" height="800" src="https://www.youtube.com/embed/xZ6lfOf5feo" 
+                                title="YouTube video player" frameborder="0" 
+                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+
+							<p><code>Unity</code><code>VR</code><code>C#</code></p>
+							
+                            <ul class="actions">
+                                <li><a href="https://github.com/gamnrd/VR-Evacuation-Simulation" 
+                                    class="button icon brands fa-github">Github</a>
+                                </li>
+                                <li><a href="https://github.com/gamnrd/VR-Evacuation-Simulation/releases/download/v1.0/CMH_MetaQuest_v1.0.apk" 
+                                    class="button icon solid fa-download">MetaQuest2 APK
+                                    </a>
+                                </li>
+                            </ul>
+
+							<section id="main" class="wrapper style4title"><h1>Features</h1></section>
+                            <span class="image fit"><img src="images/vrevac/16.png"/></span>
+							<hr>
+
+								<h2 style="text-align:center">Mini-map</h2>
+								
+								<p>During the simulation the user has the option to enable a persistant mini-map or view it in the pause screen.
+                                    The mini-map follows the user and displays an overview of their surroundings, marking nearby tasks that the 
+                                    user must complete.
+								</p>
+                                <p>
+                                    This is done by creating a second camera placed above the player, casting a orthographic view onto the minimap as a texture. 
+                                    Then by adding markers only visible to the second camera above tasks, each task will be shown on the map as a red X.
+                                </p>
+								<h2 style="text-align:center">Task List</h2>
+                                <p>The tasklist, displays all the tasks in the map and their current status. On start the list checks the scene
+                                    for every instnce of a task and counts them, 
+                                </p>
+							<pre><code>
+void Start()
+{
+    //Get Patients
+    allPatients = GameObject.FindGameObjectsWithTag("PatientTask");
+    //Get Room Markers
+    allRoomMarkers = GameObject.FindGameObjectsWithTag("RoomMarker");
+    //Get O2 Tanks
+    allO2Tanks = GameObject.FindGameObjectsWithTag("O2Tank");
+    //Get patient Documents
+    allDocuments = GameObject.FindGameObjectsWithTag("Documents");        
+
+    //Set starting text on clipboard
+    taskList = GameObject.Find("ClipboardText").GetComponent<TextMeshProUGUI>();
+    SetupTasks();
+}
+
+
+private void SetupTasks()
+{
+    //If task not complete set as "Task name (tasks done / task  count)"
+    if (!patientTaskTracker) patientTaskTxt = "1. Evacuate patients(" + patientsEvacuated + "/" + allPatients.Length + ")";
+    if (!roomMarkerTaskTracker) roomMarkerTaskTxt = "2. Toggle door markers (" + roomMarkersToggled + "/" + allRoomMarkers.Length + ")";
+    if (!oxygenTaskTracker) O2TaskTxt = "3. Shut off oxygen valve (" + tanksShutOff + "/" + allO2Tanks.Length + ")";
+    if (!documentTaskTracker) documentsTaskTxt = "4. Retrieve medical documents (" + documentsCollected + "/" + allDocuments.Length + ")";
+    
+    UpdateClipboard();
+}
+							</pre></code>
+
+
+					
+						</div>
+					</section>
+
+
+			</div>
+
+		<!-- Footer -->
+        <footer id="footer" class="wrapper style5-alt">
+            <div class="inner">
+                <ul class="menu">
+                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    <li><a href="mailto: michael.hammond714@gmail.com" class="icon fa-envelope"></a></li>
+                    <li><a href="https://www.linkedin.com/in/mike-j-hammond/" class="icon brands fa-linkedin"></a></li>
+                    <li><a href="https://github.com/gamnrd" class="icon brands fa-github"></a></li>
+                </ul>
+            </div>
+        </footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

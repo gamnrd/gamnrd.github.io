@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mike Hammond - The Final WaveZ</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" style="font-size: 35px;" class="title">Mike Hammond</a>
+			<nav>
+				<ul style="font-size: 25px;">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="mailto: michael.hammond714@gmail.com" class="icon fa-envelope"></a></li>
+					<li><a href="https://www.linkedin.com/in/mike-j-hammond/" class="icon brands fa-linkedin"></a></li>
+					<li><a href="https://github.com/gamnrd" class="icon brands fa-github"></a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="intro" class="wrapper style3">
+						<div class="inner" style="width: 75em;">
+							<h1 class="major">The Final WaveZ</h1>
+							<span class="image fit"><img src="images/finalwavez/preview2.gif"/></span>
+							<span class="image right"><img src="images/finalwavez/Capture2.JPG" alt="Image of the original map"/></span>
+								<p>This game began as the final assignment for my Simulation and Game Development class. Initially this game was a linear
+								top down zombie shooter in which the player had to traverse through various zones while fighting zombies in order to make
+								it to the end.</p>
+								<p>Since graduation I have returned to this project completely revamping it into a wave based shooter with an economy and upgrade system.
+								I have been using my work on this game to push myself to learn more about game development with the 
+								aim to turn this project into a complete game that I plan to publish for mobile.</p>
+
+								<p>
+									Using this game I have learned about object pooling, scriptable objects, animation, lighting, post-processing, optimization for mobile and more.
+								</p>
+
+								<div class="box alt">
+
+									<div class="image-slideshow">
+										<div class="image-slide fade">
+										<img src="images/finalwavez/screenshot1.jpg" alt="First build">
+										</div>        
+										<div class="image-slide fade">
+										<img src="images/finalwavez/screenshot2.jpg" alt="Pre-Demo build">
+										</div>        
+										<div class="image-slide fade">
+										<img src="images/finalwavez/screenshot3.jpg" alt="Current build">
+										</div>
+									  </div>
+
+									  <script>
+										let index = 0;
+displayImages();
+function displayImages() {
+  let i;
+  const images = document.getElementsByClassName("image-slide");
+  for (i = 0; i < images.length; i++) {
+    images[i].style.display = "none";
+  }
+  index++;
+  if (index > images.length) {
+    index = 1;
+  }
+  images[index-1].style.display = "block";
+  setTimeout(displayImages, 2000); 
+}
+									  </script>
+									  <p style="text-align:center">From the early build to present</p>
+								</div>
+
+							<section id="main" class="wrapper style4title"><h1>The Game</h1></section>
+							<p>(Note this game is not targeted for WebGl, It is recommended to play the Windows or Android builds for best performance)</p>
+<!--						
+							<iframe src="https://itch.io/embed-upload/8494095?color=333333" 
+								allowfullscreen="" 
+								width="100%" height="872" 
+								frameborder="0">
+								<a href="https://gamnrd.itch.io/thefinalwavez">Play The Final WaveZ on itch.io</a>
+							</iframe>
+-->
+							<p><code>Unity</code><code>C#</code></p>
+							
+							<p>
+								<h3>Controls:</h3>
+									WSAD - Move<br>
+									Mouse - Aim<br>
+									Mouse Left Button - Shoot<br>
+									ESC - Pause	<br>	
+							</p>
+
+
+							<ul class="actions">				
+								<li><a href="https://github.com/gamnrd/Zombie-Game" 
+									class="button icon brands fa-github">Github</a>
+								</li>
+								<li><a href="https://github.com/gamnrd/Zombie-Game/releases/download/v1.5/FinalWaveZ_Demo_PC.zip" 
+										class="button icon solid fa-download">Windows</a>
+								</li>
+								<li><a href="https://github.com/gamnrd/Zombie-Game/releases/download/v1.5/FinalWaveZ_Demo_Android.apk" 
+										class="button icon solid fa-download">Android</a>
+								</li>
+							</ul>
+
+							<section id="main" class="wrapper style4title"><h1>Features</h1></section>
+							<h2 style="text-align:center">Features in Development</h2>
+							<ul>
+								<li><b>Bosses</b> - I am working on a boss that uses a state machine to detemine 
+									when to attack and what attacks to use based on distance to the player. The boss is currently functional but needs some tweaking
+									before it is implemented into the levels.</li>
+								<li><b>Unlockable areas in each level</b> - I am working on adding new areas in each level that will become accesible once 
+									bosses are defeated or other criteria is met.</li>
+								<li><b>More zombie variants</b> - In addition to adding more variety to the zombies apearence, I am working on adding 
+									zombies that will have more ranged attacks, poison, and fire attacks.
+								</li>
+							</ul>
+
+	
+							<hr>
+								<h2 style="text-align:center">Custom Enemy Spawner</h2>
+								<span class="image fit"><img src="images/finalwavez/spawner.jpg"/></span>
+								<p>The game makes use of a custom spawner that utilizes object pooling shared among all the enemy spawners.
+									These spawners are customizable in the editor to cover any area. Enemies will only spawn when the player is in
+									 range and despawn after the player has left range for a set period of time.
+								</p>
+
+							<pre><code>
+private void Spawn()
+{
+    spawnAttempts = 0;
+
+    do
+    {
+        //Track how many attempts are made to find a valid spawn position
+        spawnAttempts++;
+
+        //Create a random spawn point within the spawn zone
+        nextSpawnPosition = spawnAreaCenter + new Vector3(Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2), 0, Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2));
+        //Use a raycast sphere with the zombies radius to check that the spawn point is clear of other objects
+        ray = new Ray(transform.position + new Vector3(nextSpawnPosition.x, 10, nextSpawnPosition.z), Vector3.down);
+        //Start from Ray pos, radius, output hit, distance, layers to hit
+        isSpawnPointInvalid = Physics.SphereCast(ray, 0.5f, 12, nonSpawnableLayers);
+
+
+        //If there have been too many unsuccesful attempts to find a valid spawn pos return
+        if (spawnAttempts > spawnAttemptLimt)
+        {
+            Debug.Log($"{gameObject.name} had {spawnAttemptLimt} failed spawn attempts");
+            return;
+        }
+
+    } while (isSpawnPointInvalid);
+
+    //Spawn Zombie
+    PoolableObject instance = WaveManager.Instance.zombiePool.GetObject();
+    if (instance != null)
+    {
+	//Assign zombie stats
+        instance.GetComponent&lt;ZombieHealth&gt;().stats = stats;
+        instance.GetComponent&lt;ZombieHealth&gt;().enabled = true;
+        instance.GetComponent&lt;ZombieMovement&gt;().stats = stats;
+
+        //Set zombie as child to spawner
+        instance.transform.SetParent(transform, false);
+
+        //Move zombie to spawn point
+        instance.transform.localPosition = new Vector3(nextSpawnPosition.x, 0, nextSpawnPosition.z);
+        lastSpawnTime = Time.time;
+    }
+    WaveManager.Instance.EnemySpawned(1);
+}
+							</pre></code>
+
+							<hr>
+								<h2 style="text-align:center">Custom Event System</h2>
+								<span class="image right"><img src="images/finalwavez/events.jpg"/></span>
+								<p>The game makes use of a custom event system that allows events to be created as scriptable objects. 
+									This method allows both the broadcaster and any listeners to be compleatly detached from each other.
+								</p>
+							</br>
+
+							<hr>
+							<h2 style="text-align:center">Upgrade System</h2>
+							<span class="image fitmedium"><img src="images/finalwavez/upgrades.jpg"/></span>
+							<br>
+							<p>The game contains five different resources, cash, wood, scraps, gas & energy. To get the differnt materials the player
+								will have to play each level and survive as long as they can. At the camp the player has access to differnt shops to purchase
+								upgrades ranging from health and defence upgrades to firing speed and damage upgrades with more planned for the future.
+							</p>
+							<p>
+								As the player purchases more upgrades, their cost will increase and eventually require different resources, thus in order to max
+								out an upgrade the player will have to have unlocked access to each level.
+							</p>
+						</br>
+
+					
+						</div>
+					</section>
+
+
+			</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper style5-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					<li><a href="mailto: michael.hammond714@gmail.com" class="icon fa-envelope"></a></li>
+					<li><a href="https://www.linkedin.com/in/mike-j-hammond/" class="icon brands fa-linkedin"></a></li>
+					<li><a href="https://github.com/gamnrd" class="icon brands fa-github"></a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
