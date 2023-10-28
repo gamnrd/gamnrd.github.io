@@ -4139,8 +4139,8 @@ input, select, textarea {
 	border-radius: 0;
 	display: block;
 	position: relative;
-	min-width: 50em;
-	max-width: 50em;
+	min-width: 30em;
+	max-width: 30em;
 	
 }
 
