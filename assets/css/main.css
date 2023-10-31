@@ -3107,7 +3107,7 @@ input, select, textarea {
 			}
 
 		.spotlights > section > .content {
-			padding: 4em 5em 2em 5em ;
+			padding: 1em 5em 1em 5em ;
 			display: -moz-flex;
 			display: -webkit-flex;
 			display: -ms-flex;
@@ -3122,6 +3122,7 @@ input, select, textarea {
 			justify-content: center;
 			width: 75em;
 			-ms-flex: 1;
+			font-size: 0.85em;
 		}
 
 			.spotlights > section > .content > .inner {
@@ -3630,7 +3631,7 @@ input, select, textarea {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
 		background: #393939;
 		cursor: default;
-		height: 100vh;
+		height: 100%;
 		left: 0;
 		overflow-x: hidden;
 		overflow-y: auto;
