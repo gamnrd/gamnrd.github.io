@@ -119,7 +119,7 @@ input, select, textarea {
 	body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.55);
 		font-family: Arial, Helvetica, sans-serif;
-		font-size: 16.5pt;
+		font-size: 13pt;
 		font-weight: normal;
 		line-height: 1.75;
 	}
@@ -160,7 +160,7 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #ffffff;
+			color: rgb(255, 255, 255);
 		}
 
 	strong, b {
@@ -189,7 +189,7 @@ input, select, textarea {
 		}
 
 	h1 {
-		font-size: 2.75em;
+		font-size: 4em;
 	}
 
 		h1.major {
@@ -2555,7 +2555,7 @@ input, select, textarea {
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: #4eb753;
+					color: #19861f;
 				}
 
 				.wrapper.style3-alt .icon.major:before {
@@ -2904,7 +2904,7 @@ input, select, textarea {
 	}
 
 	header p {
-		color: rgba(255, 255, 255, 0.35);
+		color: rgb(255, 255, 255);
 		position: relative;
 		margin: 0 0 1.5em 0;
 	}
@@ -3034,6 +3034,7 @@ input, select, textarea {
 		-ms-flex-direction: row;
 		flex-direction: row;
 		min-height: 22.5em;
+		color: #ffffffcb;
 	}
 
 		body.is-ie .spotlights > section {
@@ -3291,6 +3292,7 @@ input, select, textarea {
 
 	.wrapper {
 		position: relative;
+		color: #ffffffcb;
 	}
 
 		.wrapper > .inner {
@@ -3514,7 +3516,7 @@ input, select, textarea {
 
 					#header > nav > ul > li a {
 						border: 0;
-						color: rgba(255, 255, 255, 0.35);
+						color: rgb(255, 255, 255);
 						display: inline-block;
 						font-size: 0.6em;
 						font-weight: bold;
@@ -3570,7 +3572,7 @@ input, select, textarea {
 /* Wrapper (main) */
 
 	#sidebar + #wrapper {
-		margin-left: 18em;
+		margin-left: 15em;
 	}
 
 		@media screen and (max-width: 1280px) {
@@ -3597,7 +3599,7 @@ input, select, textarea {
 /* Footer */
 
 	#sidebar + #wrapper + #footer {
-		margin-left: 18em;
+		margin-left: 15em;
 	}
 
 		@media screen and (max-width: 1280px) {
@@ -3618,7 +3620,7 @@ input, select, textarea {
 
 	#footer > .inner .menu {
 		font-size: 0.8em;
-		color: rgba(255, 255, 255, 0.15);
+		color: rgba(255, 255, 255, 0.75);
 	}
 
 	#header + #wrapper + #footer > .inner {
@@ -3629,7 +3631,7 @@ input, select, textarea {
 
 	#sidebar {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
-		background: #393939;
+		background: #2c2c2c;
 		cursor: default;
 		height: 100%;
 		left: 0;
@@ -3638,7 +3640,7 @@ input, select, textarea {
 		position: fixed;
 		text-align: right;
 		top: 0;
-		width: 18em;
+		width: 15em;
 		z-index: 10000;
 	}
 
@@ -3671,6 +3673,9 @@ input, select, textarea {
 			body.is-ie #sidebar > .inner {
 				height: 100%;
 			}
+		#sidebar .icon{
+			color: rgb(255, 255, 255);
+		}
 
 		#sidebar nav > ul {
 			list-style: none;
@@ -3842,7 +3847,7 @@ input, select, textarea {
 			-ms-transition: color 0.2s ease;
 			transition: color 0.2s ease;
 			border: 0;
-			color: rgba(81, 210, 124, 0.35);
+			color: rgb(81, 210, 124);
 			display: block;
 			font-size: 0.6em;
 			font-weight: bold;
@@ -3882,7 +3887,7 @@ input, select, textarea {
 			}
 
 			#sidebar nav a:hover {
-				color: rgba(255, 255, 255, 0.55);
+				color: rgb(255, 255, 255);
 			}
 
 			#sidebar nav a.active {
@@ -3986,7 +3991,7 @@ input, select, textarea {
 	}
 
 		#intro p {
-			font-size: 1.25em;
+			font-size: 1em;
 		}
 
 			@media screen and (max-width: 980px) {
